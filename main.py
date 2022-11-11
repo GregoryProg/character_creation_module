@@ -37,7 +37,7 @@ def special(char_name: str, char_class: str) -> str:
     return (f'{char_name} не применил специальное умение')
 
 
-def start_training(char_name, char_class):
+def start_training(char_name: str, char_class: str, cmd: str) -> str:
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -49,7 +49,7 @@ def start_training(char_name, char_class):
           'defence — чтобы блокировать атаку противника или '
           'special — чтобы использовать свою суперсилу.')
     print('Если не хочешь тренироваться, введи команду skip.')
-    cmd = None
+    cmd: str
     while cmd != 'skip':
         cmd = input('Введи команду: ')
         if cmd == 'attack':
@@ -61,14 +61,13 @@ def start_training(char_name, char_class):
     return 'Тренировка окончена.'
 
 
-def choice_char_class() -> str:
-    approve_choice = None
-    char_class = None
+def choice_char_class(approve_choice: str, char_class: str) -> str:
+    approve_choice: str
+    char_class: str
     while approve_choice != 'y':
-        char_class = input('Введи персонажа, за которого хочешь играть:')
-        ('Воитель — warrior,')
-        ('Маг — mage,')
-        ('Лекарь — healer: ')
+        char_class = input('Введи название персонажа, '
+                           'за которого хочешь играть: Воитель — warrior, '
+                           'Маг — mage, Лекарь — healer: ')
         if char_class == 'warrior':
             print('Воитель — дерзкий воин ближнего боя.')
             ('Сильный, выносливый и отважный.')
@@ -84,7 +83,9 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main():
+def main() -> str:
+    char_name: str
+    char_class: str
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name = input('...назови себя: ')
@@ -94,3 +95,7 @@ def main():
     print('Воитель, Маг, Лекарь')
     char_class = choice_char_class()
     print(start_training(char_name, char_class))
+
+
+if __name__ == '__main__':
+    main()
